@@ -1,0 +1,34 @@
+﻿@model AcademicRank;
+
+<div class="college-create-container">
+
+    <div class="cf-form-container">
+
+        <div class="cf-logo-container">
+            Delete Rank
+        </div>
+
+        <form asp-action="Delete" method="post" class="cf-form">
+            <input asp-for="AcademicRankId" hidden /> @* required to not update existing record and not add another since name is not Id *@
+
+            <div class="cf-form-group">
+                <label for="ar">Academic Rank</label>
+                <input asp-for="RankName" type="text" id="ar" placeholder="Academic Rank" disabled>
+            </div>
+
+            <button class="cf-form-submit-btn" type="submit">Delete</button>
+        </form>
+
+        <p class="cf-signup-link">
+            <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Index" class="cf-signup-link cf-link"> Back to List </a>
+        </p>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

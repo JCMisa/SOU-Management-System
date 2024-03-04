@@ -1,0 +1,33 @@
+﻿@model AcademicRank;
+
+<div class="college-create-container">
+
+    <div class="cf-form-container">
+
+        <div class="cf-logo-container">
+            Add Rank
+        </div>
+
+        <form asp-action="Create" method="post" class="cf-form">
+            <div class="cf-form-group">
+                <label for="ar">Academic Rank</label>
+                <input asp-for="RankName" type="text" id="ar" placeholder="Academic Rank">
+                <span asp-validation-for="RankName" class="text-danger"></span>
+            </div>
+
+            <button class="cf-form-submit-btn" type="submit">Submit</button>
+        </form>
+
+        <p class="cf-signup-link">
+            <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Index" class="cf-signup-link cf-link"> Back to List </a>
+        </p>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

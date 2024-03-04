@@ -1,0 +1,49 @@
+﻿@model List<AcademicRank>;
+
+<div class="container">
+
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Academic Rank List
+            </h2>
+        </div>
+        <div class="col-10 text-end position-fixed">
+            <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Rank
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Academic Rank</th>
+                <th scopre="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ar in Model)
+            {
+                <tr>
+                    <td>@ar.AcademicRankId</td>
+                    <td>@ar.RankName</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Edit" asp-route-id="@ar.AcademicRankId" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+
+                            <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Delete" asp-route-id="@ar.AcademicRankId" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
