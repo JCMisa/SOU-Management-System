@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" />
 </head>
 <body>
     <header>
@@ -158,7 +159,7 @@
                         <!--=============== DROPDOWN 2 ===============-->
                         <li class="n-dropdown__item">
                             <div class="n-nav__link">
-                                Submit <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
+                                List <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
                             </div>
 
                             <ul class="n-dropdown__menu">
@@ -175,7 +176,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#" class="n-dropdown__link">
+                                    <a asp-area="Admin" asp-controller="CommitmentList" asp-action="Index" class="n-dropdown__link">
                                         <i class="ri-git-repository-commits-fill"></i> Commitment
                                     </a>
                                 </li>
@@ -220,12 +221,9 @@
                 </div>
             </nav>
         </div>
-
-
-
-
     </header>
-    <div class="container mt-5">
+
+    <div class="container m-top-large">
         <main role="main" class="pb-3 pt-5">
             <partial name="_Notification" />
             @RenderBody()
@@ -245,6 +243,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js" asp-append-version="true"></script>
     <!--=============== MAIN JS ===============-->
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

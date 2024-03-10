@@ -29,117 +29,169 @@
 
 <button id="btn-one" class="btn btn-success btn-lg">Download PDF</button>
 
-<a class="btn btn-primary btn-lg" asp-controller="CommitmentForm" asp-action="Upsert">Create New</a>
-<a class="btn btn-primary btn-lg" asp-controller="CommitmentForm" asp-action="Upsert" asp-route-id="@Model.CommitmentId">Update</a>
-<a class="btn btn-danger btn-lg" asp-area="User" asp-controller="CommitmentForm" asp-action="Delete" asp-route-id="@Model.CommitmentId">Delete</a>
 
-<div class="commitment-body" id="cfBody">
 
-    <div class="commitment-header">
-        <ul>
-            <li> <img class="logo" src="~/images/lspu-logo.jpg" alt="LSPU Logo" width="100px" height="100px"> </li>
-            <li>
-                <img class="logo" src="~/images/Bagong_Pilipinas_logo.png" alt="BAGON PILIPINAS Logo" width="100px"
-                     height="100px">
-            </li>
-        </ul>
-
-        <p>Republic of the Philippines</p>
-        <h3>Laguna State Polytechnic University</h3>
-        <p>Province of Laguna</p>
-    </div>
-
-    <div class="commitment-title">
-        <h2><strong>Office of Student Affairs and Services</strong></h2>
-        <p><strong>COMMITMENT FORM</strong></p>
-    </div>
-
-    <div class="commitment-hero">
-        <div class="commitment-side-title">
-            <p>
-                <strong>THE DIRECTOR/CHAIRPERSON</strong>
-            </p>
-            <p>
-                <strong>OFFICE OF STUDENT AFFAIRS AND SERVICES</strong>
-            </p>
-            <p>
-                <strong>LSPU</strong>
-            </p>
-        </div>
-
-        <div style="margin-bottom: 10px; text-indent: 5rem;">
-            <p><strong>Thru: The Coordinator, Student Organization Unit</strong></p>
-        </div>
-
-        <div class="commitment-content">
-            <p>Sir,</p>
-            <p style="text-indent:5rem">
-                This letter is in connection with the application for recognition of <span class="commitment-input">
-                    @Model.OrganizationName
-                </span>
-                as a LSPU Student Organization. I, the undersigned, have committed to serve as the organizations Faculty
-                Adviser for the academic year <span class="commitment-input"> 2024 </span> - <span class="commitment-input"> 2025 </span>,
-                and will therefore assume full responsibility as provided in the guidelines for the recognition of
-                student
-                organizations.
-            </p>
-            @* <p>
-                as a LSPU Student Organization. I, the undersigned, have committed to serve as the organizations Faculty
-                Adviser for the academic year <span class="commitment-input"> 2024 </span> - <span class="commitment-input"> 2025 </span>,
-                and will therefore assume full responsibility as provided in the guidelines for the recognition of
-                student
-                organizations.
-            </p> *@
-            <p style="text-indent:5rem">
-                Furthermore, I certify to the correctness and completeness of the documents attached to the organization
-                application for
-                recognition.
-            </p>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-primary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Commitment Form Detail</h2>
+            </div>
         </div>
     </div>
 
-    <div class="commitment-signature-section">
-        <p><strong>Very respectfully yours,</strong></p>
-        <br>
-        <div class="commitment-author-info">
-            <p>Name: &nbsp; <span class="commitment-input"> @Model.AdvicerName </span></p>
-            <p>Signature: &nbsp; <span class="commitment-input"> _______________ </span></p>
-            <p>College: &nbsp; <span class="commitment-input"> @Model.College.CollegeName </span></p>
-            <p>Academic Rank: &nbsp; <span class="commitment-input"> @Model.AcademicRank.RankName </span></p>
-            <p>Home Address: &nbsp; <span class="commitment-input"> @Model.HomeAddress </span></p>
-            <br>
-            <p>Contact Number(s): &nbsp; <span class="commitment-input"> @Model.ContactNo </span></p>
-            <p>Date: &nbsp; <span class="commitment-input"> _______________ </span></p>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6"></div>
+            <div class="container">
+                <ul style="width: 84%; display:flex; flex-direction: row; justify-content:space-between">
+                    <li class="list-inline-item col-6">
+                        <div class="col-6">
+                            <a asp-controller="CommitmentForm" asp-action="Upsert" class="btn btn-success btn-lg">
+                                Create
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="list-inline-item col-6">
+                        <div class="col-6">
+                            <a class="btn btn-primary btn-lg" asp-controller="CommitmentForm" asp-action="Upsert" asp-route-id="@Model.CommitmentId">Update</a>
+                        </div>
+                    </li>
+
+                    <li class="list-inline-item col-6">
+                        <div class="col-6">
+                            <a class="btn btn-danger btn-lg" asp-action="Delete" asp-route-id="@Model.CommitmentId">Delete</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            @* <ul class="list-unstyled flex-column flex-dire">
+                <li>
+                    <div class="col-6">
+                        <a asp-controller="CommitmentForm" asp-action="Upsert" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> &nbsp; Create Commitment Form
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-6">
+                        <a asp-controller="CommitmentForm" asp-action="Upsert" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> &nbsp; Update Commitment Form
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-6">
+                        <a asp-controller="CommitmentForm float-end" asp-action="Upsert" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> &nbsp; Delete Commitment Form
+                        </a>
+                    </div>
+                </li>
+            </ul>  *@
         </div>
     </div>
+</div>
 
-    <div class="commitment-last-section">
-        <p>Noted:</p>
-        <p style="text-indent: 5rem;">________________________</p>
-        <p style="text-indent: 5rem;">Dean.Assoc. Dean of College</p>
-        <br>
-        <br>
-        <div class="commitment-approval">
-            <p>Recommending Approval:</p>
-            <br>
-            <p style="text-decoration: underline;"><strong>AL JOHN A. VILLAREAL</strong></p>
-            <p>Coordinator, Student Organization Unit</p>
-            <br>
-            <p>Approved / Disapproved:</p>
-            <br>
-            <p style="text-decoration: underline;"><strong>DR. ALBERTO B. CASTILLO</strong></p>
-            <p>Chairperson, Office of Student Affairs and Services</p>
+<div class="container mt-5" id="cfBody">
+    <div class="sheet padding-10mm" id="commitment-body">
+        <div class="row justify-content-center position-relative">
+            <div class="img-left position-absolute">
+                <img src="~/images/lspuLogo.png" alt="lspuLogo" class="commitment-image">
+            </div>
+
+            <div class="col text-center">
+                <p class="text-sm">Republic of the Philippines</p>
+                <h4 class="text-sm">Laguna State Polytechnic University</h4>
+                <p class="text-sm">Province of Laguna</p>
+            </div>
+
+            <div class="img-right position-absolute">
+                <img src="~/images/Bagong_Pilipinas_logo.png" alt="BPImage" class="commitment-image">
+            </div>
+
+
+            <div class="row text-center mt-5">
+                <h3><strong>Office of Student Affairs and Services</strong></h3>
+                <p><strong>COMMITMENT FORM</strong></p>
+            </div>
+
+            <div class="row text-start px-5">
+                <p><strong>THE DIRECTOR/CHAIRPERSON</strong></p>
+                <p><strong>OFFICE OF STUDENT AFFAIRS AND SERVICES</strong></p>
+                <p><strong>LSPU</strong></p>
+
+                <p class="indent"><strong>Thru: The Coordinator, Student Organization Unit</strong></p>
+
+                <p>Sir,</p>
+                <p class="indent">
+                    This letter is in connection with the application for recognition of <span class="underline">
+                        @Model.OrganizationName
+                    </span>
+                    as a LSPU Student Organization. I, the undersigned, have committed to serve as the organizations Faculty
+                    Adviser for the academic year 2024 - 2025, and will therefore assume full responsibility as provided in the guidelines for the recognition of student organizations.
+                </p>
+                <p class="indent">
+                    Furthermore, I certify to the correctness and completeness of the documents attached to the organization
+                    application for
+                    recognition.
+                </p>
+            </div>
+
+            <div class="container px-5">
+                <div class="d-flex justify-content-between">
+                    <div class="align-self-end">
+                        <!-- Empty div for positioning -->
+                    </div>
+                    <div>
+                        <!-- Your content -->
+                        <div class="text-start mt-5 commitment-sign">
+                            <p><strong>Very respectfully yours,</strong></p>
+
+                            <div class="mt-5">
+                                <p>Name: &nbsp; <span class="underline"> @Model.AdvicerName </span></p>
+                                <p>Signature: &nbsp; <span class="underline"> _______________ </span></p>
+                                <p>College: &nbsp; <span class="underline"> @Model.College.CollegeName </span></p>
+                                <p>Academic Rank: &nbsp; <span class="underline"> @Model.AcademicRank.RankName </span></p>
+                                <p>Home Address: &nbsp; <span class="underline"> @Model.HomeAddress </span></p>
+
+                                <p>Contact Number(s): &nbsp; <span class="mt-5 underline"> @Model.ContactNo </span></p>
+                                <p>Date: &nbsp; <span class="underline"> _______________ </span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-start px-5">
+                <p>Noted:</p>
+                <p class="indent">________________________</p>
+                <p class="indent">Dean.Assoc. Dean of College</p>
+            </div>
+
+            <div class="row text-center mt-5">
+                <p>Recommending Approval:</p>
+                <br>
+                <p class="underline"><strong>AL JOHN A. VILLAREAL</strong></p>
+                <p>Coordinator, Student Organization Unit</p>
+                <br>
+                <p>Approved / Disapproved:</p>
+                <br>
+                <p class="underline"><strong>DR. ALBERTO B. CASTILLO</strong></p>
+                <p>Chairperson, Office of Student Affairs and Services</p>
+            </div>
+
+            <div class="container mt-5">
+                <ul class="list-unstyled d-flex justify-content-between">
+                    <li class="text-start">LSPU-OSAS-SF-003</li>
+                    <li class="text-center">Rev.1</li>
+                    <li class="text-end">09 November 2020</li>
+                </ul>
+            </div>
         </div>
     </div>
-
-    <div class="commitment-footer">
-        <ul>
-            <li>LSPU-OSAS-SF-003</li>
-            <li>Rev.1</li>
-            <li>09 November 2020</li>
-        </ul>
-    </div>
-
 </div>
 
 

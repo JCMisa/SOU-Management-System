@@ -1,37 +1,37 @@
 ﻿@model CommitmentFormVM;
 
-<div class="college-create-container" style="margin-top:10rem">
+<div class="college-create-container">
 
     <div class="cf-form-container">
 
         <div class="cf-logo-container">
-            @(Model.CommitmentForm.CommitmentId != 0 ? "Update" : "Create") Commitment Form
+            Delete Commitment Form
         </div>
 
-        <form method="post" class="cf-form">
+        <form method="post" asp-action="Delete" class="cf-form">
             <input asp-for="CommitmentForm.CommitmentId" hidden />
 
             <div class="cf-form-group">
                 <label for="orgName">Organization Name</label>
-                <input asp-for="CommitmentForm.OrganizationName" type="text" id="orgName" placeholder="College Name">
+                <input asp-for="CommitmentForm.OrganizationName" type="text" id="orgName" placeholder="College Name" disabled>
                 <span asp-validation-for="CommitmentForm.OrganizationName" class="text-danger"></span>
             </div>
 
             <div class="cf-form-group">
                 <label for="advName">Advicer Name</label>
-                <input asp-for="CommitmentForm.AdvicerName" type="text" id="advName" placeholder="College Name">
+                <input asp-for="CommitmentForm.AdvicerName" type="text" id="advName" placeholder="College Name" disabled>
                 <span asp-validation-for="CommitmentForm.AdvicerName" class="text-danger"></span>
             </div>
 
             <div class="cf-form-group">
                 <label for="address">Home Address</label>
-                <input asp-for="CommitmentForm.HomeAddress" type="text" id="address" placeholder="College Name">
+                <input asp-for="CommitmentForm.HomeAddress" type="text" id="address" placeholder="College Name" disabled>
                 <span asp-validation-for="CommitmentForm.HomeAddress" class="text-danger"></span>
             </div>
 
             <div class="cf-form-group">
                 <label for="cn">Contact Number</label>
-                <input asp-for="CommitmentForm.ContactNo" type="text" id="cn" placeholder="College Name">
+                <input asp-for="CommitmentForm.ContactNo" type="text" id="cn" placeholder="College Name" disabled>
                 <span asp-validation-for="CommitmentForm.ContactNo" class="text-danger"></span>
             </div>
 
@@ -39,7 +39,7 @@
             <div class="cf-row">
                 <div class="cf-form-group">
                     <label for="college">College</label>
-                    <select asp-for="@Model.CommitmentForm.CollegeId" asp-items="@Model.CollegeList" id="college" class="form-select">
+                    <select asp-for="@Model.CommitmentForm.CollegeId" asp-items="@Model.CollegeList" id="college" class="form-select" disabled>
                         <option disabled selected>--Select College--</option>
                     </select>
                     <span asp-validation-for="CommitmentForm.CollegeId" class="text-danger"></span>
@@ -47,21 +47,14 @@
 
                 <div class="cf-form-group">
                     <label for="ar">Academic Rank</label>
-                    <select asp-for="@Model.CommitmentForm.AcademicRankId" asp-items="@Model.AcademicRankList" id="ar" class="form-select">
+                    <select asp-for="@Model.CommitmentForm.AcademicRankId" asp-items="@Model.AcademicRankList" id="ar" class="form-select" disabled>
                         <option disabled selected>--Select Academic Rank--</option>
                     </select>
                     <span asp-validation-for="CommitmentForm.AcademicRankId" class="text-danger"></span>
                 </div>
             </div>
 
-            @if(Model.CommitmentForm.CommitmentId != 0)
-            {
-                <button class="cf-form-submit-btn" type="submit">Update</button>
-            }
-            else
-            {
-                <button class="cf-form-submit-btn" type="submit">Submit</button>
-            }
+            <button class="cf-form-submit-btn" type="submit">Delete</button>
         </form>
 
     </div>

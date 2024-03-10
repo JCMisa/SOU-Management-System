@@ -21,9 +21,9 @@ html {
     --header-height: 3.5rem;
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
-    --black-color: #131414;
-    --black-color-light: hsl(220, 24%, 15%);
-    --black-color-lighten: hsl(220, 20%, 18%);
+    --black-color: #161616;
+    --black-color-light: #242323;
+    --black-color-lighten: #242323;
     --white-color: #fff;
     --body-color: hsl(220, 100%, 97%);
     /*========== Font and typography ==========*/
@@ -47,6 +47,7 @@ body {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
+    overflow-x: hidden;
 }
 
 
@@ -88,6 +89,18 @@ a {
 
 a:hover {
     color: orangered;
+}
+
+.m-top-small {
+    margin-top: 2rem;
+}
+
+.m-top-medium {
+    margin-top: 5rem;
+}
+
+.m-top-large {
+    margin-top: 8rem;
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -293,6 +306,7 @@ a:hover {
     background-color: var(--black-color-lighten);
 }
 
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
@@ -334,9 +348,9 @@ a:hover {
         column-gap: .25rem;
     }
 
-        .n-nav__link:hover {
-            background-color: transparent;
-        }
+    .n-nav__link:hover {
+        background-color: transparent;
+    }
 
     .n-dropdown__item,
     .n-dropdown__subitem {
@@ -531,101 +545,43 @@ a:hover {
 
 
 /*commitment form design goes here*/
-.commitment-input {
-    width: auto;
+.indent {
+    text-indent: 5rem;
+}
+
+.underline {
     text-decoration: underline;
-    color: rgb(0, 0, 0);
 }
 
-.commitment-body {
-    text-align: center;
-    font-family: "Times New Roman", serif;
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    margin-top: 35%;
-    width: 60%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.commitment-image {
+    max-width: 100px;
+    height: auto;
 }
 
-.commitment-body .commitment-header {
-    margin-bottom: 20px;
+.img-left {
+    text-align: left;
+    max-width: 70%;
 }
 
-.commitment-body .commitment-header ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30rem;
-    margin-bottom: -90px;
+.img-right {
+    text-align: right;
+    max-width: 70%;
 }
 
-.commitment-body .commitment-header p {
-    font-family: Calibri, sans-serif;
-    font-size: 17px;
+.commitment-sign {
+    max-width: 500px;
 }
 
-.commitment-body .commitment-header h3 {
-    font-family: Calibri, sans-serif;
-    font-size: 17px;
-}
+/* phone */
+@media (max-width: 800px) {
+    h4, p {
+        font-size: 12px;
+        /* Adjust the font size for small screens */
+    }
 
-.commitment-body .commitment-title {
-    margin-bottom: 10px;
-}
-
-.commitment-body .commitment-hero {
-    text-align: start;
-    max-width: 90%;
-    padding-left: 140px;
-}
-
-.commitment-body .commitment-side-title {
-    margin-bottom: 10px;
-}
-
-.commitment-body .commitment-side-title p {
-    font-size: medium;
-    font-style: normal;
-}
-
-.commitment-body .commitment-signature-section {
-    text-align: start;
-    margin-left: 40rem;
-    margin-top: 10px;
-    max-width: 80%;
-}
-
-.commitment-body .commitment-signature-section .commitment-author-info p {
-    margin-bottom: 5px;
-}
-
-.commitment-body .commitment-last-section {
-    margin-top: 20px;
-    padding-left: 140px;
-    text-align: start;
-    max-width: 80%;
-}
-
-.commitment-body .commitment-last-section .commitment-approval {
-    text-align: center;
-    padding-left: 140px;
-}
-
-.commitment-body .commitment-footer {
-    margin-top: 40px;
-}
-
-.commitment-body .commitment-footer ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20rem;
+    .commitment-image {
+        display: none
+    }
 }
 
 

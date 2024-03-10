@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Repository.IRepository;
 using Web.Models;
 using Web.Models.ViewModels;
@@ -15,21 +16,6 @@ namespace WebSystemFinalProject.Areas.User.Controllers
         public CommitmentFormController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-        }
-
-
-
-
-        public IActionResult Index()
-        {
-            List<CommitmentForm> commitmentForms = _unitOfWork.Commitment.GetAll(includeProperties: "College,AcademicRank").ToList();
-            //IEnumerable<SelectListItem> CollegeList = _unitOfWork.College.
-            //    GetAll().Select(u => new SelectListItem
-            //    {
-            //        Text = u.CollegeName,
-            //        Value = u.CollegeId.ToString()
-            //    });
-            return View(commitmentForms);
         }
 
 
@@ -137,42 +123,49 @@ namespace WebSystemFinalProject.Areas.User.Controllers
 
 
 
-        //[HttpGet]
-        //public IActionResult Delete(int? id)
-        //{
-        //    if(id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public IActionResult Delete(int? id)
+        {
+            CommitmentFormVM cmVM = new()
+            {
+                CollegeList = _unitOfWork.College.
+                GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.CollegeName,
+                    Value = u.CollegeId.ToString()
+                }),
+                AcademicRankList = _unitOfWork.AcademicRank.
+                GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.RankName,
+                    Value = u.AcademicRankId.ToString()
+                }),
+                CommitmentForm = new CommitmentForm(),
+            };
 
-        //    var commitmentObj = _unitOfWork.Commitment.Get(u => u.CommitmentId == id);
+            // delete
+            cmVM.CommitmentForm = _unitOfWork.Commitment.Get(u => u.CommitmentId == id);
+            return View(cmVM);
+            
+        }
 
-        //    if(commitmentObj == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategory(int? id)
+        {
+            if (_unitOfWork == null)
+            {
+                return Problem("Entity set 'IUnitOfWork'  is null.");
+            }
+            CommitmentForm? category = _unitOfWork.Commitment.Get(u => u.CommitmentId == id);
+            if (category != null)
+            {
+                _unitOfWork.Commitment.Remove(category);
+            }
 
-        //    return View(commitmentObj);
-        //}
+            _unitOfWork.SaveChanges();
+            TempData["success"] = "Commitment Form deleted successfully"; //for toaster before redirecting
+            return RedirectToAction("Index", "Home");
+        }
 
-
-        ////#region API CALLS
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeleteCommitment(int? id)
-        //{
-        //    var commitmentObj = _unitOfWork.Commitment.Get(u => u.CommitmentId == id);
-        //    if (commitmentObj == null)
-        //    {
-        //        //return Json(new { success = false, message = "Error While Deleting" });
-        //        return NotFound();
-        //    }
-
-        //    _unitOfWork.Commitment.Remove(commitmentObj);
-        //    _unitOfWork.SaveChanges();
-        //    TempData["success"] = "Commitment Form deleted successfully"; //for toaster before redirecting
-        //    //return Json(new { success = true, message = "Delete Successful" });
-        //    return RedirectToAction("Index", "Home");
-        //}
-        ////#endregion
     }
 }
