@@ -283,6 +283,7 @@ a:hover {
     max-height: 0;
     overflow: hidden;
     transition: max-height .4s ease-out;
+    z-index: var(--z-fixed);
 }
 
 /* Show dropdown menu & submenu */
@@ -545,6 +546,13 @@ a:hover {
 
 
 /*commitment form design goes here*/
+#commitment-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
 .indent {
     text-indent: 5rem;
 }
@@ -553,35 +561,110 @@ a:hover {
     text-decoration: underline;
 }
 
-.commitment-image {
+.image {
     max-width: 100px;
     height: auto;
 }
 
 .img-left {
     text-align: left;
-    max-width: 70%;
 }
 
 .img-right {
     text-align: right;
-    max-width: 70%;
 }
 
 .commitment-sign {
     max-width: 500px;
 }
 
-/* phone */
+#btnPrint {
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    border-radius: 100%;
+    z-index: 1;
+    width: 70px;
+}
+
+#btnSave {
+    position: fixed;
+    top: 60%;
+    left: 30px;
+    border-radius: 100%;
+    z-index: 1;
+    width: 70px;
+}
+
+/* commitment phone */
 @media (max-width: 800px) {
     h4, p {
         font-size: 12px;
         /* Adjust the font size for small screens */
     }
 
-    .commitment-image {
+    .image {
         display: none
     }
+}
+
+/* commitment print layout */
+@media print {
+    .n-header, #btnSave, #btnPrint, #commitment-crud-btn {
+        display: none;
+    }
+
+    #commitment-container {
+        max-width: unset;
+        box-shadow: none;
+        border: 0px;
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    #commitment-body {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    #commitment-body #commitment-inner {
+        padding-top: 15px;
+        font-size: 14px;
+    }
+
+    #commitment-body #commitment-inner .image {
+        max-width: 100px;
+        height: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #osas {
+        font-size: 16px;
+    }
+
+    .inputs p {
+        margin-top: -5px;
+    }
+
+    #noted {
+        margin-top: -10px;
+    }
+
+    #coordinators p {
+        margin-top: -5px;
+    }
+
+    #commitment-footer {
+        padding: 0 20px 10px 20px;
+    }
+
 }
 
 
