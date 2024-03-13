@@ -1,0 +1,45 @@
+﻿@model List<IdentityUser>
+
+<div class="container">
+
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Manage Accounts
+            </h2>
+        </div>
+        <div class="col-10 text-end position-fixed">
+            <a asp-area="Admin" asp-controller="Accounts" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Account
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Email</th>
+                <th>Role</th>
+                <th scopre="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@ViewBag.UserRoles[user.Id]</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-area="Admin" asp-controller="Accounts" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

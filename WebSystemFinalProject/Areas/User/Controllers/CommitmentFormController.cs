@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Repository.IRepository;
 using Web.Models;
 using Web.Models.ViewModels;
+using Web.Utility;
 
 namespace WebSystemFinalProject.Areas.User.Controllers
 {
     [Area("User")]
+    [Authorize(Roles = StaticDetails.Role_Super_Admin + ", " + StaticDetails.Role_Admin + ", " + StaticDetails.Role_User)]
     public class CommitmentFormController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

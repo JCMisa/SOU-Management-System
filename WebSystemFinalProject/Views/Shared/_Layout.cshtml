@@ -159,66 +159,73 @@
                         </li>
 
                         <!--=============== DROPDOWN 2 ===============-->
-                        <li class="n-dropdown__item">
-                            <div class="n-nav__link">
-                                List <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
-                            </div>
+                        @if (User.IsInRole(StaticDetails.Role_Admin) || User.IsInRole(StaticDetails.Role_Super_Admin))
+                        {
+                            <li class="n-dropdown__item">
+                                <div class="n-nav__link">
+                                    List <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
+                                </div>
 
-                            <ul class="n-dropdown__menu">
-                                <li>
-                                    <a href="#" class="n-dropdown__link">
-                                        <i class="ri-file-add-fill"></i> Application
-                                    </a>
-                                </li>
+                                <ul class="n-dropdown__menu">
+                                    <li>
+                                        <a href="#" class="n-dropdown__link">
+                                            <i class="ri-file-add-fill"></i> Application
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="#" class="n-dropdown__link">
-                                        <i class="ri-arrow-go-forward-line"></i> Renewal
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="#" class="n-dropdown__link">
+                                            <i class="ri-arrow-go-forward-line"></i> Renewal
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a asp-area="Admin" asp-controller="CommitmentList" asp-action="Index" class="n-dropdown__link">
-                                        <i class="ri-git-repository-commits-fill"></i> Commitment
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="CommitmentList" asp-action="Index" class="n-dropdown__link">
+                                            <i class="ri-git-repository-commits-fill"></i> Commitment
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="#" class="n-dropdown__link">
-                                        <i class="ri-list-view"></i> Plan of Activities
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li>
+                                        <a href="#" class="n-dropdown__link">
+                                            <i class="ri-list-view"></i> Plan of Activities
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                         <!--=============== DROPDOWN 3 ===============-->
-                        <li class="n-dropdown__item">
-                            <div class="n-nav__link">
-                                Manage <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
-                            </div>
+                        @if (User.IsInRole(StaticDetails.Role_Super_Admin))
+                        {
+                            <li class="n-dropdown__item">
+                                <div class="n-nav__link">
+                                    Manage <i class="ri-arrow-down-s-line n-dropdown__arrow"></i>
+                                </div>
 
-                            <ul class="n-dropdown__menu">
-                                <li>
-                                    <a href="#" class="n-dropdown__link">
-                                        <i class="ri-add-line"></i> Create Account
-                                    </a>
-                                </li>
+                                <ul class="n-dropdown__menu">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Accounts" asp-action="Index" class="n-dropdown__link">
+                                            <i class="ri-add-line"></i> Create Account
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a asp-area="Admin" asp-controller="College" asp-action="Index" class="n-dropdown__link">
-                                        <i class="ri-school-fill"></i> College
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="College" asp-action="Index" class="n-dropdown__link">
+                                            <i class="ri-school-fill"></i> College
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Index" class="n-dropdown__link">
-                                        <i class="ri-sort-number-desc"></i> Academic Rank
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="AcademicRank" asp-action="Index" class="n-dropdown__link">
+                                            <i class="ri-sort-number-desc"></i> Academic Rank
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
-                        <li><a asp-area="User" asp-controller="Home" asp-action="Privacy" class="n-nav__link">Logout</a></li>
+                        @* <li><a asp-area="User" asp-controller="Home" asp-action="Privacy" class="n-nav__link">Logout</a></li> *@
+                        <partial name="_LoginPartial" />
                     </ul>
                 </div>
             </nav>

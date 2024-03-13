@@ -8,5 +8,8 @@ namespace Web.Utility
 {
     public static class StaticDetails
     {
+        public const string Role_User = "User";
+        public const string Role_Admin = "Admin";
+        public const string Role_Super_Admin = "SuperAdmin";
     }
 }

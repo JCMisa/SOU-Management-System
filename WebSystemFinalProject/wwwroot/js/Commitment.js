@@ -12,12 +12,12 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/admin/commitmentlist/getall'},
         "columns": [
-            { data: 'organizationName', "width": "25%" },
-            { data: 'advicerName', "width": "15%" },
-            { data: 'homeAddress', "width": "25%" },
-            { data: 'contactNo', "width": "15%" },
-            { data: 'college.collegeName', "width": "15%" },
-            { data: 'academicRank.rankName', "width": "15%" },
+            { data: 'organizationName', "width": "20%" },
+            { data: 'advicerName', "width": "10%" },
+            { data: 'homeAddress', "width": "10%" },
+            { data: 'contactNo', "width": "10%" },
+            { data: 'college.collegeName', "width": "10%" },
+            { data: 'academicRank.rankName', "width": "10%" },
             {
                 data: 'commitmentId',
                 "render": function (data) {
@@ -26,7 +26,7 @@ function loadDataTable() {
                         <a onClick=Delete('/admin/commitmentlist/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>`
                 },
-                "width": "30%"
+                "width": "10%"
             }
         ]
     });

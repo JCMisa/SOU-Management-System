@@ -1,0 +1,57 @@
+﻿@model CreateUserViewModel;
+
+<div class="college-create-container">
+
+    <div class="cf-form-container">
+
+        <div class="cf-logo-container">
+            Delete Account
+        </div>
+
+        <form asp-action="Create" method="post" class="cf-form">
+            <div class="cf-form-group">
+                <label for="ar">Email</label>
+                <input asp-for="Email" type="text" id="ar" placeholder="Email" disabled>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="cf-form-group">
+                <label for="ar">Password</label>
+                <input asp-for="Password" type="text" id="ar" placeholder="Password" disabled>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="cf-form-group">
+                <label for="ar">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="text" id="ar" placeholder="Confirm Password" disabled>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="cf-row">
+                <div class="cf-form-group">
+                    <label for="Role">Roles</label>
+                    <select asp-for="Role" class="form-control" disabled>
+                        <option value="">Select Role</option>
+                        @foreach (var role in ViewBag.Roles)
+                        {
+                            <option value="@role.Value">@role.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button class="cf-form-submit-btn" type="submit">Delete</button>
+        </form>
+
+        <p class="cf-signup-link">
+            <a asp-area="Admin" asp-controller="Accounts" asp-action="Index" class="cf-signup-link cf-link"> Back to List </a>
+        </p>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

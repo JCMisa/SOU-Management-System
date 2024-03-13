@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web.DataAccess.Repository.IRepository;
 using Web.Models;
+using Web.Utility;
 
 namespace WebSystemFinalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticDetails.Role_Super_Admin)]
     public class AcademicRankController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
