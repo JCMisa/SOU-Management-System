@@ -26,6 +26,9 @@ namespace Web.DataAccess.Data
         //for academicRank model
         public DbSet<AcademicRank> AcademicRanks { get; set; }
 
+        //for academicYear model
+        public DbSet<AcademicYear> AcademicYears { get; set; }
+
         //for commitmentForm model
         public DbSet<CommitmentForm> CommitmentForms { get; set; }
 

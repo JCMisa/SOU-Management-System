@@ -35,5 +35,7 @@ namespace Web.Models
         [ForeignKey("AcademicRankId")]
         [ValidateNever]
         public AcademicRank AcademicRank { get; set; }
+
+
     }
 }

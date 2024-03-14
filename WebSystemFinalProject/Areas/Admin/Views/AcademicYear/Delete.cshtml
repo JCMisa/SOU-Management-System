@@ -1,0 +1,34 @@
+﻿@model AcademicYear;
+
+<div class="college-create-container">
+
+    <div class="cf-form-container">
+
+        <div class="cf-logo-container">
+            Delete Year
+        </div>
+
+        <form asp-action="Delete" method="post" class="cf-form">
+            <input asp-for="AcademicYearId" hidden /> @* required to not update existing record and not add another since name is not Id *@
+
+            <div class="cf-form-group">
+                <label for="ar">Academic Year</label>
+                <input asp-for="YearName" type="text" id="ar" placeholder="Academic Year" disabled>
+            </div>
+
+            <button class="cf-form-submit-btn" type="submit">Delete</button>
+        </form>
+
+        <p class="cf-signup-link">
+            <a asp-area="Admin" asp-controller="AcademicYear" asp-action="Index" class="cf-signup-link cf-link"> Back to List </a>
+        </p>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

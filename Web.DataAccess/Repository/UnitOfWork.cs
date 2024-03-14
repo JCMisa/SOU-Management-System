@@ -13,6 +13,7 @@ namespace Web.DataAccess.Repository
         private ApplicationDbContext _db;
         public ICollegeRepository? College { get; private set; }
         public IAcademicRankRepository? AcademicRank { get; private set; }
+        public IAcademicYearRepository? AcademicYear { get; private set; }
         public ICommitmentRepository? Commitment { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
@@ -20,6 +21,7 @@ namespace Web.DataAccess.Repository
             _db = db;
             College = new CollegeRepository(_db);
             AcademicRank = new AcademicRankRepository(_db);
+            AcademicYear = new AcademicYearRepository(_db);
             Commitment = new CommitmentRepository(_db);
         }       
 
