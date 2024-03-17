@@ -1,0 +1,45 @@
+﻿@model EditUserViewModel;
+
+<div class="college-create-container">
+
+    <div class="cf-form-container">
+
+        <div class="cf-logo-container">
+            Edit Account
+        </div>
+
+        <form asp-action="Edit" method="post" class="cf-form">
+            <div class="cf-form-group">
+                <label for="ar">Email</label>
+                <input asp-for="Email" type="text" id="ar" placeholder="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="cf-form-group">
+                <label for="role">Role</label>
+                @* <input asp-for="Role" type="text" id="ar"> *@
+                <select asp-for="Role" id="role" class="form-select">
+                    <option disabled>--Select Role--</option>
+                    <option value="User" selected> User </option>
+                    <option value="Admin"> Admin </option>
+                    <option value="SuperAdmin"> Super Admin </option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <button class="cf-form-submit-btn" type="submit">Edit</button>
+        </form>
+
+        <p class="cf-signup-link">
+            <a asp-area="Admin" asp-controller="Accounts" asp-action="Index" class="cf-signup-link cf-link"> Back to List </a>
+        </p>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

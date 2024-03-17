@@ -14,9 +14,11 @@ namespace Web.DataAccess.Data
 
         //for college model
         public DbSet<College> Colleges { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<College>().HasData(
                 new College { CollegeId = 1, CollegeName = "COLLEGE OF ARTS AND SCIENCES (CAS)" },
                 new College { CollegeId = 2, CollegeName = "COLLEGE OF BUSINESS, ADMINISTRATION AND ACCOUNTANCY (CBAA)" }
@@ -25,9 +27,6 @@ namespace Web.DataAccess.Data
 
         //for academicRank model
         public DbSet<AcademicRank> AcademicRanks { get; set; }
-
-        //for academicYear model
-        public DbSet<AcademicYear> AcademicYears { get; set; }
 
         //for commitmentForm model
         public DbSet<CommitmentForm> CommitmentForms { get; set; }

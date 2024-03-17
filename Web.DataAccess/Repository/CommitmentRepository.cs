@@ -25,6 +25,7 @@ namespace Web.DataAccess.Repository
             if (objFromDb != null)
             {
                 objFromDb.OrganizationName = commitmentForm.OrganizationName;
+                objFromDb.SchoolYear = commitmentForm.SchoolYear;
                 objFromDb.AdvicerName = commitmentForm.AdvicerName;
                 objFromDb.HomeAddress = commitmentForm.HomeAddress;
                 objFromDb.ContactNo = commitmentForm.ContactNo;

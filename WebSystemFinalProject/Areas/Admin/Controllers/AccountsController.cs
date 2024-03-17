@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using Web.Models;
 using Web.Models.ViewModels;
 using Web.Utility;
 
@@ -40,44 +43,58 @@ namespace WebSystemFinalProject.Areas.Admin.Controllers
             return View(users);
         }
 
+
+
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Edit(string id)
         {
-            var roles = _roleManager.Roles.Select(r => new SelectListItem { Value = r.Name, Text = r.Name }).ToList();
-            ViewBag.Roles = roles;
-            return View();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            EditUserViewModel model = new()
+            {
+                Email = user.Email,
+                Role = userRoles.FirstOrDefault()
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateUserViewModel model)
+        public async Task<IActionResult> Edit(string id, EditUserViewModel model)
         {
+            var user = await _userManager.FindByIdAsync(id);
+            if(id == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    // Assign role to the user
-                    await _userManager.AddToRoleAsync(user, model.Role);
-                    if (!String.IsNullOrEmpty(model.Role))
-                    {
-                        await _userManager.AddToRoleAsync(user, model.Role);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.Role_User);
-                    }
+                //assign the updated value of model.Email to the value of email ng account na nasa database
+                user.Email = model.Email;
 
-                    // Redirect to index
-                    return RedirectToAction("Index");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+
+                // Remove existing roles
+                var existingRoles = await _userManager.GetRolesAsync(user); //retrieve lahat ng available roles na involve si user
+                await _userManager.RemoveFromRolesAsync(user, existingRoles); //remove si user sa mga roles na involve sya
+
+                // Add the new role
+                await _userManager.AddToRoleAsync(user, model.Role); //assign sa user yung role na value ni view model
+
+
+                // Save changes
+                await _userManager.UpdateAsync(user);
+
+                return RedirectToAction("Index");
             }
-            // If model state is not valid, return back to the create view with validation errors
-            return View(model);
+
+            return View(user);
         }
 
 
@@ -94,11 +111,9 @@ namespace WebSystemFinalProject.Areas.Admin.Controllers
             var result = await _userManager.DeleteAsync(user);
             if (!result.Succeeded)
             {
-                // Handle error
                 return RedirectToAction("Index");
             }
-
-            // Redirect to index or any other page after successful deletion
+            //if successful
             return RedirectToAction("Index");
         }
     }

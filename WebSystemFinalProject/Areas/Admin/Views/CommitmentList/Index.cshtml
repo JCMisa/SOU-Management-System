@@ -1,7 +1,70 @@
 ﻿@model List<Web.Models.CommitmentForm>;
 
 
-<div class="card shadow border-0 my-4">
+<div class="table">
+    <div class="table_header">
+        <p>
+            Commitment List
+        </p>
+        <div>
+            <input class="table_search" type="text" placeholder="products">
+			<a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" class="add_new table_btn">+ Add New</a>
+        </div>
+    </div>
+
+    <div class="table_section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>SchoolYear</th>
+                    <th>AdvicerName</th>
+					<th>HomeAddress</th>
+					<th>Contact</th>
+					<th>College</th>
+					<th>AcademicRank</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.OrganizationName</td>
+                        <td>@obj.SchoolYear</td>
+                        <td>@obj.AdvicerName</td>
+                        <td>@obj.HomeAddress</td>
+                        <td>@obj.ContactNo</td>
+                        <td>@obj.College.CollegeName</td>
+                        <td>@obj.AcademicRank.RankName</td>
+                        <td>
+							<button class="table_btn">
+								<a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" asp-route-id="@obj.CommitmentId">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+							</button>
+
+							<button class="table_btn">
+								<a asp-area="User" asp-controller="CommitmentForm" asp-action="Delete" asp-route-id="@obj.CommitmentId">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+							</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <div> &lt; </div>
+        <div> &lt;&lt; </div>
+        <div>1</div>
+        <div>2</div>
+        <div> &gt;&gt; </div>
+        <div> &gt; </div>
+    </div>
+</div>
+
+@* <div class="card shadow border-0 my-4">
 	<div class="card-header bg-primary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
@@ -23,6 +86,7 @@
 			<thead>
 				<tr>
 					<th>OrganizationName</th>
+					<th>SchoolYear</th>
 					<th>AdvicerName</th>
 					<th>HomeAddress</th>
 					<th>ContactNo</th>
@@ -31,10 +95,32 @@
 					<th></th>
 				</tr>
 			</thead>
+
+			<tbody>
+				@foreach (var obj in Model)
+				{
+					<tr>
+						<td>@obj.OrganizationName</td>
+						<td>@obj.SchoolYear</td>
+						<td>@obj.AdvicerName</td>
+						<td>@obj.HomeAddress</td>
+						<td>@obj.ContactNo</td>
+						<td>@obj.College</td>
+						<td>@obj.AcademicRank</td>
+						<td>
+							<div class="w-75 btn-group" role="group">
+								<a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" asp-route-id="@obj.CommitmentId" class="btn btn-primary mx-2">
+									<i class="bi bi-pencil-square"></i> &nbsp; Edit
+								</a>
+
+								<a asp-area="User" asp-controller="CommitmentForm" asp-action="Delete" asp-route-id="@obj.CommitmentId" class="btn btn-danger mx-2">
+									<i class="bi bi-trash-fill"></i> &nbsp; Delete
+								</a>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
 		</table>
 	</div>
-</div>
-
-@section Scripts {
-	<script src="~/js/Commitment.js"></script>
-}
+</div> *@

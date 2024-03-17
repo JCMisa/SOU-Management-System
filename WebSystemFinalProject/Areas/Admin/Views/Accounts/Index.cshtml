@@ -9,7 +9,7 @@
             </h2>
         </div>
         <div class="col-10 text-end position-fixed">
-            <a asp-area="Admin" asp-controller="Accounts" asp-action="Create" class="btn btn-primary">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> &nbsp; Add New Account
             </a>
         </div>
@@ -32,6 +32,10 @@
                     <td>@ViewBag.UserRoles[user.Id]</td>
                     <td>
                         <div class="w-75 btn-group" role="group">
+                            <a asp-area="Admin" asp-controller="Accounts" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+
                             <a asp-area="Admin" asp-controller="Accounts" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger mx-2">
                                 <i class="bi bi-trash-fill"></i> Delete
                             </a>

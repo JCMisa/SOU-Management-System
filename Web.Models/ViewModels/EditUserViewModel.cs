@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web.Models
+namespace Web.Models.ViewModels
 {
-    public class AcademicYear
+    public class EditUserViewModel
     {
-        [Key]
-        public int AcademicYearId { get; set; }
+        [Required]
+        public string Email { get; set; }
 
         [Required]
-        public string? YearName { get; set; }
+        public string Role { get; set; }
     }
 }

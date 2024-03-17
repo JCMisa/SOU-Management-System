@@ -56,16 +56,22 @@ namespace WebSystemFinalProject.Areas.User.Controllers
                     Text = u.CollegeName,
                     Value = u.CollegeId.ToString()
                 }),
+
                 AcademicRankList = _unitOfWork.AcademicRank.
                 GetAll().Select(u => new SelectListItem
                 {
                     Text = u.RankName,
                     Value = u.AcademicRankId.ToString()
                 }),
-                CommitmentForm = new CommitmentForm(),
+
+                CommitmentForm = new CommitmentForm()
             };
-            
-            if(id == null || id == 0)
+
+            var currentYear = DateTime.Now.Year;
+            var futureYear = currentYear + 10;
+            ViewBag.years = Enumerable.Range(currentYear, futureYear - currentYear + 1);
+
+            if (id == null || id == 0)
             {
                 // create
                 return View(cmVM);

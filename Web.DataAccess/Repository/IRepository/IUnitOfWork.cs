@@ -12,8 +12,6 @@ namespace Web.DataAccess.Repository.IRepository
 
         IAcademicRankRepository AcademicRank { get; }
 
-        IAcademicYearRepository AcademicYear { get; }
-
         ICommitmentRepository Commitment { get; }
 
         void SaveChanges();

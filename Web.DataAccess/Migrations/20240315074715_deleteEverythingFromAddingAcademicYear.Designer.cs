@@ -12,8 +12,8 @@ using Web.DataAccess.Data;
 namespace Web.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240314035927_AddNewTableAcademicYear")]
-    partial class AddNewTableAcademicYear
+    [Migration("20240315074715_deleteEverythingFromAddingAcademicYear")]
+    partial class deleteEverythingFromAddingAcademicYear
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,23 +238,6 @@ namespace Web.DataAccess.Migrations
                     b.HasKey("AcademicRankId");
 
                     b.ToTable("AcademicRanks");
-                });
-
-            modelBuilder.Entity("Web.Models.AcademicYear", b =>
-                {
-                    b.Property<int>("AcademicYearId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcademicYearId"));
-
-                    b.Property<string>("YearName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AcademicYearId");
-
-                    b.ToTable("AcademicYears");
                 });
 
             modelBuilder.Entity("Web.Models.College", b =>

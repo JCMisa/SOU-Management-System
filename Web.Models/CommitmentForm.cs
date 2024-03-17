@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,6 +37,8 @@ namespace Web.Models
         [ValidateNever]
         public AcademicRank AcademicRank { get; set; }
 
+        [Display(Name = "School Year")]
+        public int SchoolYear { get; set; }
 
     }
 }
