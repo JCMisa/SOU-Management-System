@@ -1,0 +1,70 @@
+﻿@model List<CommitmentForm>;
+
+<div class="table">
+    <div class="table_header">
+        <p>
+            Commitment List
+        </p>
+        <div>
+            <input class="table_search" type="text" placeholder="forms">
+            <a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" class="add_new table_btn">+ Add New</a>
+        </div>
+    </div>
+
+    <div class="table_section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>SchoolYear</th>
+                    <th>AdvicerName</th>
+                    <th>HomeAddress</th>
+                    <th>Contact</th>
+                    <th>College</th>
+                    <th>AcademicRank</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.OrganizationName</td>
+                        <td>@obj.SchoolYear</td>
+                        <td>@obj.AdvicerName</td>
+                        <td>@obj.HomeAddress</td>
+                        <td>@obj.ContactNo</td>
+                        <td>@obj.College.CollegeName</td>
+                        <td>@obj.AcademicRank.RankName</td>
+                        <td>
+                            <button class="table_btn">
+                                <a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" asp-route-id="@obj.CommitmentId">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </button>
+
+                            <button class="table_btn">
+                                <a asp-area="User" asp-controller="CommitmentForm" asp-action="Delete" asp-route-id="@obj.CommitmentId">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <div> &lt; </div>
+        <div> &lt;&lt; </div>
+        <div>1</div>
+        <div>2</div>
+        <div> &gt;&gt; </div>
+        <div> &gt; </div>
+    </div>
+</div>
+
+<p>
+    Current Logged-in User: @ViewBag.userId
+</p>
+
+                                

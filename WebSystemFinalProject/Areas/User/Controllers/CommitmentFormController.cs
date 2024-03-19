@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Web.DataAccess.Data;
 using Web.DataAccess.Repository.IRepository;
 using Web.Models;
 using Web.Models.ViewModels;
@@ -14,13 +17,16 @@ namespace WebSystemFinalProject.Areas.User.Controllers
     [Authorize(Roles = StaticDetails.Role_Super_Admin + ", " + StaticDetails.Role_Admin + ", " + StaticDetails.Role_User)]
     public class CommitmentFormController : Controller
     {
+        private readonly ApplicationDbContext _db;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CommitmentFormController(IUnitOfWork unitOfWork)
+        public CommitmentFormController(ApplicationDbContext db, IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
         {
+            _db = db;
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
-
 
 
 
@@ -46,7 +52,7 @@ namespace WebSystemFinalProject.Areas.User.Controllers
 
 
         [HttpGet]
-        public IActionResult Upsert(int? id)
+        public async Task<IActionResult> Upsert(int? id)
         {
             CommitmentFormVM cmVM = new()
             {
@@ -67,10 +73,6 @@ namespace WebSystemFinalProject.Areas.User.Controllers
                 CommitmentForm = new CommitmentForm()
             };
 
-            var currentYear = DateTime.Now.Year;
-            var futureYear = currentYear + 10;
-            ViewBag.years = Enumerable.Range(currentYear, futureYear - currentYear + 1);
-
             if (id == null || id == 0)
             {
                 // create
@@ -89,16 +91,11 @@ namespace WebSystemFinalProject.Areas.User.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(CommitmentFormVM commitmentFormVM)
+        public async Task<IActionResult> Upsert(CommitmentFormVM commitmentFormVM)
         {
-            if (commitmentFormVM.CommitmentForm == null)
-            {
-                return BadRequest();
-            }
-
             if (ModelState.IsValid)
             {
-                if(commitmentFormVM.CommitmentForm.CommitmentId == 0)
+                if (commitmentFormVM.CommitmentForm.CommitmentId == 0)
                 {
                     _unitOfWork.Commitment.Add(commitmentFormVM.CommitmentForm);
                     TempData["success"] = "Commitment Form added successfully";
@@ -126,7 +123,7 @@ namespace WebSystemFinalProject.Areas.User.Controllers
                     Value = u.AcademicRankId.ToString()
                 });
 
-                return View(commitmentFormVM);
+				return View(commitmentFormVM);
             }         
         }
 

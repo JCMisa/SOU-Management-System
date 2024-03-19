@@ -28,12 +28,12 @@
             <div class="cf-row">
                 <div class="cf-form-group">
                     <label for="Role">Roles</label>
-                    <select asp-for="Role" class="form-control">
-                        <option value="">Select Role</option>
+                    <select asp-for="Role" asp-items="@((IEnumerable<SelectListItem>)ViewBag.Roles)" class="form-control">
+                        @* <option value="">Select Role</option>
                         @foreach (var role in ViewBag.Roles)
                         {
                             <option value="@role.Value">@role.Text</option>
-                        }
+                        } *@
                     </select>
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>

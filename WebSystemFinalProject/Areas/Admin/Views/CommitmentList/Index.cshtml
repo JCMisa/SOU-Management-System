@@ -7,13 +7,13 @@
             Commitment List
         </p>
         <div>
-            <input class="table_search" type="text" placeholder="products">
+            <input class="table_search" type="text" placeholder="forms">
 			<a asp-area="User" asp-controller="CommitmentForm" asp-action="Upsert" class="add_new table_btn">+ Add New</a>
         </div>
     </div>
 
     <div class="table_section">
-        <table>
+        <table id="tblData">
             <thead>
                 <tr>
                     <th>Organization</th>
@@ -25,7 +25,7 @@
 					<th>AcademicRank</th>
                 </tr>
             </thead>
-            <tbody>
+            @* <tbody>
                 @foreach (var obj in Model)
                 {
                     <tr>
@@ -51,18 +51,22 @@
                         </td>
                     </tr>
                 }
-            </tbody>
+            </tbody> *@
         </table>
     </div>
-    <div class="pagination">
+    @* <div class="pagination">
         <div> &lt; </div>
         <div> &lt;&lt; </div>
         <div>1</div>
         <div>2</div>
         <div> &gt;&gt; </div>
         <div> &gt; </div>
-    </div>
+    </div> *@
 </div>
+
+@section Scripts{
+	<script src="~/js/Commitment.js"></script>
+}
 
 @* <div class="card shadow border-0 my-4">
 	<div class="card-header bg-primary bg-gradient ml-0 py-3">

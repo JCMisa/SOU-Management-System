@@ -15,15 +15,15 @@ namespace Web.DataAccess.Data
         //for college model
         public DbSet<College> Colleges { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<College>().HasData(
-                new College { CollegeId = 1, CollegeName = "COLLEGE OF ARTS AND SCIENCES (CAS)" },
-                new College { CollegeId = 2, CollegeName = "COLLEGE OF BUSINESS, ADMINISTRATION AND ACCOUNTANCY (CBAA)" }
-                );
-        }
+        //    modelBuilder.Entity<College>().HasData(
+        //        new College { CollegeId = 1, CollegeName = "COLLEGE OF ARTS AND SCIENCES (CAS)" },
+        //        new College { CollegeId = 2, CollegeName = "COLLEGE OF BUSINESS, ADMINISTRATION AND ACCOUNTANCY (CBAA)" }
+        //        );
+        //}
 
         //for academicRank model
         public DbSet<AcademicRank> AcademicRanks { get; set; }
@@ -32,6 +32,6 @@ namespace Web.DataAccess.Data
         public DbSet<CommitmentForm> CommitmentForms { get; set; }
 
         //for applicationUser model (just in case you want to add more column in identity table)
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

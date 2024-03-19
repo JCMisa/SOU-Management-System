@@ -35,6 +35,11 @@
                 <span asp-validation-for="CommitmentForm.ContactNo" class="text-danger"></span>
             </div>
 
+            <div class="cf-form-group">
+                <label for="sy">School Year</label>
+                <input asp-for="CommitmentForm.SchoolYear" type="text" id="sy" disabled>
+                <span asp-validation-for="CommitmentForm.SchoolYear" class="text-danger"></span>
+            </div>
 
             <div class="cf-row">
                 <div class="cf-form-group">
@@ -52,33 +57,6 @@
                     </select>
                     <span asp-validation-for="CommitmentForm.AcademicRankId" class="text-danger"></span>
                 </div>
-
-                <div class="cf-form-group">
-                    <label for="sy">School Year</label>
-                    <select asp-for="CommitmentForm.SchoolYear" id="sy" class="form-select">
-                        <option disabled>--Select School Year--</option>
-                        @foreach(var year in ViewBag.years)
-                        {
-                            if(@year == DateTime.Now.Year)
-                            {
-                                <option value="@year" selected> @year.ToString() </option>
-                            }
-                            else
-                            {
-                                <option value="@year" disabled> @year.ToString() </option>
-                            }
-                        }
-                    </select>
-                    <span asp-validation-for="CommitmentForm.SchoolYear" class="text-danger"></span>
-                </div>
-
-                @* <div class="cf-form-group">
-                    <label for="ar">Academic Year</label>
-                    <select asp-for="@Model.CommitmentForm.AcademicRankId" asp-items="@Model.AcademicRankList" id="ar" class="form-select">
-                        <option disabled selected>--Select Academic Rank--</option>
-                    </select>
-                    <span asp-validation-for="CommitmentForm.AcademicRankId" class="text-danger"></span>
-                </div> *@
             </div>
 
             @if(Model.CommitmentForm.CommitmentId != 0)

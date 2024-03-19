@@ -26,6 +26,6 @@ namespace Web.Models.ViewModels
         public string ConfirmPassword { get; set; }
 
         [Required]
-        public string Role { get; set; }
+        public string Role { get; set; } // Single string property for role
     }
 }

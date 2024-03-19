@@ -5,6 +5,7 @@ using Web.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Web.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

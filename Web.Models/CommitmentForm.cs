@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -38,7 +40,6 @@ namespace Web.Models
         public AcademicRank AcademicRank { get; set; }
 
         [Display(Name = "School Year")]
-        public int SchoolYear { get; set; }
-
+        public int SchoolYear { get; set; } = DateTime.Now.Year;
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using Web.DataAccess.Data;
 namespace Web.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318123555_AddIdentityUserInCommitment")]
+    partial class AddIdentityUserInCommitment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,11 +89,6 @@ namespace Web.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -142,10 +140,6 @@ namespace Web.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -243,7 +237,7 @@ namespace Web.DataAccess.Migrations
 
                     b.HasKey("AcademicRankId");
 
-                    b.ToTable("AcademicRanks", (string)null);
+                    b.ToTable("AcademicRanks");
                 });
 
             modelBuilder.Entity("Web.Models.College", b =>
@@ -260,7 +254,7 @@ namespace Web.DataAccess.Migrations
 
                     b.HasKey("CollegeId");
 
-                    b.ToTable("Colleges", (string)null);
+                    b.ToTable("Colleges");
                 });
 
             modelBuilder.Entity("Web.Models.CommitmentForm", b =>
@@ -289,6 +283,9 @@ namespace Web.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("OrganizationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -302,14 +299,9 @@ namespace Web.DataAccess.Migrations
 
                     b.HasIndex("CollegeId");
 
-                    b.ToTable("CommitmentForms", (string)null);
-                });
+                    b.HasIndex("IdentityUserId");
 
-            modelBuilder.Entity("Web.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.ToTable("CommitmentForms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -377,9 +369,15 @@ namespace Web.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+
                     b.Navigation("AcademicRank");
 
                     b.Navigation("College");
+
+                    b.Navigation("IdentityUser");
                 });
 #pragma warning restore 612, 618
         }

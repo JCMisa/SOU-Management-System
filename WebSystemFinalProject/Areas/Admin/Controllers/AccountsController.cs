@@ -45,6 +45,45 @@ namespace WebSystemFinalProject.Areas.Admin.Controllers
 
 
 
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            // Populate roles dropdown
+            ViewBag.Roles = _roleManager.Roles.Select(r => new SelectListItem { Text = r.Name, Value = r.Name });
+            return View();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // Assign role
+                    await _userManager.AddToRoleAsync(user, model.Role);
+                    return RedirectToAction("Index");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            // If model state is not valid, return to the view with roles dropdown
+            ViewBag.Roles = _roleManager.Roles.Select(r => new SelectListItem { Text = r.Name, Value = r.Name });
+            return View(model);
+        }
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
