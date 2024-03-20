@@ -6,3 +6,95 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+@if (User.IsInRole(StaticDetails.Role_Super_Admin) || User.IsInRole(StaticDetails.Role_Admin))
+{
+    <div class="slide-container swiper mt-5">
+        <div class="slide-content">
+            <div class="slide-card-wrapper swiper-wrapper">
+                <div class="slide-card swiper-slide">
+                    <div class="slide-image-content">
+                        <span class="slide-overlay"></span>
+
+                        <div class="slide-card-image">
+                            <img src="~/images/undraw_checklist__re_2w7v.svg" alt="sampleImg1" class="slide-card-img">
+                        </div>
+                    </div>
+
+                    <div class="slide-card-content">
+                        <h2 class="slide-name">Application Forms</h2>
+                        <p class="slide-description">Lorem ipsum dolor sit amet.</p>
+
+                        <button class="slide-button">View List</button>
+                    </div>
+                </div>
+
+                <div class="slide-card swiper-slide">
+                    <div class="slide-image-content">
+                        <span class="slide-overlay"></span>
+
+                        <div class="slide-card-image">
+                            <img src="~/images/undraw_chore_list_re_2lq8.svg" alt="sampleImg1" class="slide-card-img">
+                        </div>
+                    </div>
+
+                    <div class="slide-card-content">
+                        <h2 class="slide-name">Renewal Forms</h2>
+                        <p class="slide-description">Lorem ipsum dolor sit amet.</p>
+
+                        <button class="slide-button">View List</button>
+                    </div>
+                </div>
+
+                <div class="slide-card swiper-slide">
+                    <div class="slide-image-content">
+                        <span class="slide-overlay"></span>
+
+                        <div class="slide-card-image">
+                            <img src="~/images/undraw_selection_re_ycpo.svg" alt="sampleImg1" class="slide-card-img">
+                        </div>
+                    </div>
+
+                    <div class="slide-card-content">
+                        <h2 class="slide-name">Commitment Forms</h2>
+                        <p class="slide-description">Lorem ipsum dolor sit amet.</p>
+
+                        @* <button class="slide-button">View List</button> *@
+                        <a asp-area="Admin" asp-controller="CommitmentList" asp-action="Index" class="slide-button">View List</a>
+                    </div>
+                </div>
+
+                <div class="slide-card swiper-slide">
+                    <div class="slide-image-content">
+                        <span class="slide-overlay"></span>
+
+                        <div class="slide-card-image">
+                            <img src="~/images/undraw_to_do_list_re_9nt7.svg" alt="sampleImg1" class="slide-card-img">
+                        </div>
+                    </div>
+
+                    <div class="slide-card-content">
+                        <h2 class="slide-name">Plan of Activities</h2>
+                        <p class="slide-description">Lorem ipsum dolor sit amet.</p>
+
+                        <button class="slide-button">View List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+}
+
+
+@section Scripts{
+    @* swiper js *@
+    <script src="~/js/swiper-bundle.min.js"></script>
+
+    @* slider js *@
+    <script src="~/js/slider.js"></script>
+}

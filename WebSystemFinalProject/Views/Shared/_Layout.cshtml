@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" />
+
+    <!-- swiper css -->
+    <link rel="stylesheet" href="~/css/swiper-bundle.min.css">
 </head>
 <body>
     <header>
@@ -232,12 +235,22 @@
         </div>
     </header>
 
-    <div class="container m-top-large">
+    <div class="home-container">
+        <main role="main" class="pb-3 pt-5">
+            <section class="container m-top-small">
+                <!-- render here the contents -->
+                <partial name="_Notification" />
+                @RenderBody()
+            </section>
+        </main>
+    </div>
+
+    @* <div class="container m-top-large">
         <main role="main" class="pb-3 pt-5">
             <partial name="_Notification" />
             @RenderBody()
         </main>
-    </div>
+    </div> *@
 
 
 
